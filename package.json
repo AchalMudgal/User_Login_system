@@ -1,0 +1,28 @@
+{
+  "name": "user_login",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AchalMudgal/User_Login_system.git"
+  },
+  "author": "Achal Mudgal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AchalMudgal/User_Login_system/issues"
+  },
+  "homepage": "https://github.com/AchalMudgal/User_Login_system#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.6.5"
+  }
+}
