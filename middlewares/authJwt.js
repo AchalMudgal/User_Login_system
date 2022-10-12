@@ -7,7 +7,7 @@ const verifyToken = (req,res,next) => {
 
     //Check if the token passed
     if(!token){
-        return res.status(403).send({
+        return res.status(403).json({status : 0,
             message : "Failed! access-token is not provided"
         })
     };
@@ -15,7 +15,7 @@ const verifyToken = (req,res,next) => {
     //Now go and verify the token
     jwt.verify(token,"Random_key" , (err,decoded) =>{
         if(err){
-            return res.status(401).send({
+            return res.status(401).send({status : 0,
                 message : "Unauthorized!"
             })
         }
@@ -31,14 +31,14 @@ const isValidUserIdInRequestParams = async (req,res,next) => {
         const user = User.find({userId : req.params.id});
 
         if(!user){
-            return res.status(400).send({
+            return res.status(400).json({status : 0,
                 message : "userId passed doesn't exist"
             })
         }
         next();
     }catch(err){
         console.log("Internal while reading user info", err.message);
-        return res.status(500).send({
+        return res.status(500).json({status : 0,
             message : "Error while resding the user Info"
         })
     };

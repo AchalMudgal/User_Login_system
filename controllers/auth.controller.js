@@ -20,11 +20,11 @@ exports.signUp = async (req,res) => {
             userId : reqUser.userId,
             email : reqUser.email
         };
-
-        res.status(201).send(response);
+        
+        res.status(201).json({status : 1,response})
     }catch(err){
         console.log("Internal error while signUp");
-        res.status(500).send({
+        res.status(500).json({status : 0,
             message : "Error while singUp of user"
         });
     }
@@ -38,7 +38,7 @@ exports.signIn = async (req, res) => {
 
         //Check if userId passed is valid
         if(user == null){
-            return res.status(400).send({
+            return res.status(400).json({status : 0,
                 message : "Failed! userId passed is not correct"
             })
         }
@@ -48,7 +48,7 @@ exports.signIn = async (req, res) => {
 
         //Cheack if password correct is correct
         if(!passwordValidity){
-            return res.status(401).send({
+            return res.status(401).json({status : 0,
                 message : "Wrong password"
             });
         }
@@ -59,17 +59,19 @@ exports.signIn = async (req, res) => {
         },"Random_key",{
             expiresIn:6000
         });
-        
-        //Sucessful login response
-        res.status(200).send({
+
+        const response = {
             name : user.name,
             userId : user.userId,
             email : user.email,
             accessToken : token
-        });
+        }
+        
+        //Sucessful login response
+        res.status(200).json({status : 1,response});
     }catch(err){
         console.log("Internal error while signIn", err.message);
-        res.status(500).send({
+        res.status(500).json({status : 0,
             message : "Error while signin"
         });
     }

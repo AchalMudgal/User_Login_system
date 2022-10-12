@@ -9,5 +9,8 @@ module.exports = (app) => {
     app.put("/loginSystem/api/v1/users/:id",[authJwt.verifyToken,authJwt.isValidUserIdInRequestParams],userController.update);
 
     //get users by limit
-    app.get("/loginSystem/api/v1/users/",[authJwt.verifyToken] ,userController.getUsersByLimit)
+    app.get("/loginSystem/api/v1/users/",[authJwt.verifyToken] ,userController.getUsersByLimit);
+
+    // //Delete user by id
+    // app.delete("/loginSystem/api/v1/users/:id",[authJwt.verifyToken],userController.deleteUser)
 };

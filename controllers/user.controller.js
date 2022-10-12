@@ -7,11 +7,11 @@ const objectConverter = require('../utils/objectConverter');
 exports.findUsers = async (req,res) => {
     try{
         const user = await User.find({userId : req.params.id});
-
-        res.status(200).send(objectConverter.userResponse(user));
+        const response = objectConverter.userResponse(user);
+        res.status(200).json({status : 1, response});
     }catch(err){
         console.log("Error while fetching the user");
-        res.status(500).send({
+        res.status(500).json({status : 0,
             message : "Internal Error found while fetching user by id"
         })
     }
@@ -26,14 +26,15 @@ exports.update = async (req,res) => {
     
         const updatedUser = await user.save();
 
-        res.sendStatus(200).send({
+        const response = {
             name : updatedUser.name,
             email : updatedUser.email,
             userId : updatedUser.userId
-        });
+        }
+        res.sendStatus(200).json({status : 1, response});
     }catch(err){
         console.log("Internal error while updating", err.message);
-        return res.status(500).send({
+        return res.status(500).json({status : 0,
             message : "Error while updating user info"
         })
     }
@@ -47,10 +48,10 @@ exports.getUsersByLimit = async (req,res) => {
         const users = await User.find().limit(parseInt(req.query.limit));
         const listedUsers = {users};
 
-        res.status(200).send(listedUsers);
+        res.status(200).json({status : 1 ,listedUsers});
     }catch(err){
         console.log("Internal Error while fetching all users data", err.message);
-        return res.status(500).send({
+        return res.status(500).json({status : 0,
             message : "Error while fetching all users data"
         })
     };   
