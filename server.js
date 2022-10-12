@@ -3,11 +3,9 @@ const app = express();
 
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const bcryptjs = require("bcryptjs");
 
 const serverConfigs = require("./configs/server.configs");
 const dbConfigs = require("./configs/db.configs");
-const User = require("./models/user.model");
 
 //Bosyparser
 app.use(bodyParser.json());
