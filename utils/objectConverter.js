@@ -8,7 +8,8 @@ exports.userResponse = (users) => {
         userResult.push({
             name : users.name,
             userId : users.userId,
-            email : users.email
+            email : users.email,
+            userDetailsInserted : users.userDetailsInserted
         })
     })
     return userResult;

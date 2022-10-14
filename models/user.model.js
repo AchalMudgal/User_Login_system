@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 const userSchema = new mongoose.Schema({
     name : {
         type : String,
@@ -32,6 +33,10 @@ const userSchema = new mongoose.Schema({
         default : ()=>{
             return Date.now()
         }
+    },
+    userDetailsInserted : {
+        type : [mongoose.SchemaType.ObjectId],
+        ref : "Detail"
     }
 });
 

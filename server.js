@@ -24,6 +24,7 @@ db.once("open", ()=>{
 //To connect with the server
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
+require("./routes/details.routes")(app);
 
 app.listen(serverConfigs.PORT, ()=>{
     console.log("Server is running at PORT : ",serverConfigs.PORT);

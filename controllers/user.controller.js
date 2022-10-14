@@ -2,13 +2,14 @@
 
 const User = require('../models/user.model');
 const objectConverter = require('../utils/objectConverter');
+const Detail = require("../models/details.model");
 
 // //This method will return the user details based on id
 exports.findUsers = async (req,res) => {
     try{
-        const user = await User.find({userId : req.params.id});
-        const response = objectConverter.userResponse(user);
-        res.status(200).json({status : 1, response});
+        const user = await User.find({userId : req.body.userId});
+        const userData = objectConverter.userResponse(user);
+        res.status(200).json({status : 1, userData});
     }catch(err){
         console.log("Error while fetching the user");
         res.status(500).json({status : 0,
@@ -20,7 +21,7 @@ exports.findUsers = async (req,res) => {
 //Update the user
 exports.update = async (req,res) => {
     try{
-        const user = await User.findOne({userId : req.params.id});
+        const user = await User.findOne({userId : req.body.userId});
 
         user.name = req.body.name != undefined ? req.body.name : user.name;
     
